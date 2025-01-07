@@ -1,0 +1,24 @@
+=====
+expat
+=====
+
+
+.. toctree::
+    :maxdepth: 2
+
+    expat
+    asciitab
+    expat_config
+    winconfig
+    internal
+    utf8tab
+    latin1tab
+    ascii
+    iasciitab
+    xmlrole
+    xmltok
+    nametab
+    xmltok_impl
+    siphash
+    expat_external
+
