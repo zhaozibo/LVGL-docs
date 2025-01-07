@@ -2119,10 +2119,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#usage">Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#examples">Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#open-a-front-with-freetype">Open a front with FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#learn-more">Learn more</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../libs/freetype.html#open-a-front-with-freetype">Open a front with FreeType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libs/freetype.html#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#learn-more">Learn More</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#api">API</a></li>
 </ul>
 </li>
@@ -4759,28 +4761,31 @@
              
   <section id="font-manager">
 <span id="id1"></span><h1>Font Manager<a class="headerlink" href="#font-manager" title="Link to this heading"></a></h1>
-<p>Font Manager is a secondary encapsulation based on <a class="reference internal" href="../libs/freetype.html#freetype"><span class="std std-ref">FreeType support</span></a>, which
-facilitates upper-level applications to manage and use vector fonts. Currently
-supported functions include:</p>
+<p>Font Manager is a secondary encapsulation of <a class="reference internal" href="../libs/freetype.html#freetype"><span class="std std-ref">FreeType support</span></a>, which provides
+facilities for high-level applications to manage and use vector fonts.  Currently
+provided font-management functions includes:</p>
 <ul class="simple">
 <li><p>Font resource reference counting (reduces repeated creation of font resources).</p></li>
 <li><p>Font resource concatenation (font fallback).</p></li>
-<li><p>Font resource recycling mechanism (buffers recently deleted font resources to reduce the time overhead of repeated creation).</p></li>
+<li><p>Font resource recycling mechanism (buffers recently deleted font resources to
+reduce the time overhead of repeated creation).</p></li>
 </ul>
 <section id="usage">
 <span id="font-manager-usage"></span><h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<p>Enable <code class="xref c c-macro docutils literal notranslate"><span class="pre">LIB_FREETYPE</span></code> and <cite>LV_USE_FONT_MANAGER</cite> in <code class="docutils literal notranslate"><span class="pre">lv_conf.h</span></code>.</p>
-<p>Configure <code class="xref c c-macro docutils literal notranslate"><span class="pre">LV_FONT_MANAGER_NAME_MAX_LEN</span></code> to set the maximum length of the font name.</p>
+<p>Enable FreeType and Font Manager in <code class="docutils literal notranslate"><span class="pre">lv_conf.h</span></code> by setting the
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">LV_USE_FREETYPE</span></code> and <code class="xref c c-macro docutils literal notranslate"><span class="pre">LV_USE_FONT_MANAGER</span></code> macros to non-zero
+values, and configure <code class="xref c c-macro docutils literal notranslate"><span class="pre">LV_FONT_MANAGER_NAME_MAX_LEN</span></code> to set the maximum
+length of the font name.</p>
 <section id="initialize-font-manager">
 <h3>Initialize Font Manager<a class="headerlink" href="#initialize-font-manager" title="Link to this heading"></a></h3>
 <p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv422lv_font_manager_create8uint32_t" title="lv_font_manager_create"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_create()</span></code></a> to create a font manager, where the
 <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">recycle_cache_size()</span></code> parameter is used to set the number of font recycling
-caches,which can improve font creation efficiency.</p>
+caches, which can improve font creation efficiency.</p>
 <p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv431lv_font_manager_add_path_staticP17lv_font_manager_tPKcPKc" title="lv_font_manager_add_path_static"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_add_path_static()</span></code></a> to add a mapping between the font
 file path and the custom font name, so that the application can access the font
 resources more conveniently.  It should be noted that if the file path is not static
-(assigned from a local variable), please use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv424lv_font_manager_add_pathP17lv_font_manager_tPKcPKc" title="lv_font_manager_add_path"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_add_path()</span></code></a> to
-add the path.  This API will copy the path content to the internal management.</p>
+(assigned from a local variable), use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv424lv_font_manager_add_pathP17lv_font_manager_tPKcPKc" title="lv_font_manager_add_path"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_add_path()</span></code></a> to
+add the path.  This function will make its own copy of the string.</p>
 <p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv427lv_font_manager_remove_pathP17lv_font_manager_tPKc" title="lv_font_manager_remove_path"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_remove_path()</span></code></a> to remove the font path mapping.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">lv_font_manager_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">g_font_manager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 
@@ -4800,7 +4805,7 @@ add the path.  This API will copy the path content to the internal management.</
 <h3>Create Font from Font Manager<a class="headerlink" href="#create-font-from-font-manager" title="Link to this heading"></a></h3>
 <p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv427lv_font_manager_create_fontP17lv_font_manager_tPKc8uint16_t8uint32_t8uint16_t" title="lv_font_manager_create_font"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_create_font()</span></code></a> to create a font.  The parameters are
 basically the same as <a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv423lv_freetype_font_createPKc30lv_freetype_font_render_mode_t8uint32_t24lv_freetype_font_style_t" title="lv_freetype_font_create"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_freetype_font_create()</span></code></a>.</p>
-<p>The <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">font_family()</span></code> parameter can be filled with the names of multiple fonts
+<p>The <code class="docutils literal notranslate"><span class="pre">font_family</span></code> parameter can be filled with the names of multiple fonts
 (separated by <code class="docutils literal notranslate"><span class="pre">,</span></code>) to achieve font concatenation (when the corresponding glyph is
 not found in a font file, it will automatically search from the next concatenated
 font).</p>
@@ -4822,10 +4827,10 @@ font).</p>
 </section>
 <section id="delete-font">
 <h3>Delete Font<a class="headerlink" href="#delete-font" title="Link to this heading"></a></h3>
-<p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv427lv_font_manager_delete_fontP17lv_font_manager_tP9lv_font_t" title="lv_font_manager_delete_font"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_delete_font()</span></code></a> to delete the font.
-The font manager will mark the font resource as a recyclable font so that it can be
-quickly created next time.</p>
-<p>Note that you need to delete the widget that references the font first, and then
+<p>Use <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv427lv_font_manager_delete_fontP17lv_font_manager_tP9lv_font_t" title="lv_font_manager_delete_font"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_delete_font()</span></code></a> to delete the font when it is no longer needed.
+The font manager will mark the font resource as a recyclable font so that it has the
+possibility of being more quickly created next time.</p>
+<p>Note that you need to delete any Widgets that used the font first, and then
 delete the font to avoid accessing wild pointers.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Delete label and font */</span>
 <span class="n">lv_obj_delete</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
@@ -4840,7 +4845,7 @@ delete the font to avoid accessing wild pointers.</p>
 be noted that before destruction, it is necessary to ensure that the application has
 deleted all fonts using <a class="reference internal" href="../../API/others/font_manager/lv_font_manager.html#_CPPv427lv_font_manager_delete_fontP17lv_font_manager_tP9lv_font_t" title="lv_font_manager_delete_font"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">lv_font_manager_delete_font()</span></code></a>.  The font manager
 will check the reference status of all allocated fonts.  If there are still fonts
-being referenced, the font manager will fail to destroy and return false.</p>
+being referenced, the font manager will fail to be destroyed and the function will return false.</p>
 </section>
 </section>
 <section id="example">
@@ -4924,7 +4929,7 @@ being referenced, the font manager will fail to destroy and return false.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, LVGL Kft.
-      <span class="lastupdated">Last updated on Jan 06, 2025.
+      <span class="lastupdated">Last updated on Jan 07, 2025.
       </span></p>
   </div>
 

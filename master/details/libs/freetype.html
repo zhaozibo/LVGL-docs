@@ -2119,10 +2119,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#open-a-front-with-freetype">Open a front with FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#learn-more">Learn more</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#open-a-front-with-freetype">Open a front with FreeType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#learn-more">Learn More</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api">API</a></li>
 </ul>
 </li>
@@ -4759,15 +4761,18 @@
              
   <section id="freetype-support">
 <span id="freetype"></span><h1>FreeType support<a class="headerlink" href="#freetype-support" title="Link to this heading"></a></h1>
-<p>Interface to FreeType library to generate font bitmap at run time.</p>
-<p>Detailed introduction: <a class="reference external" href="https://www.freetype.org">https://www.freetype.org</a></p>
+<p>Interface to FreeType library to generate font bitmaps at run time.</p>
+<p>A detailed introduction can be found at: <a class="reference external" href="https://freetype.org/">https://freetype.org/</a> .</p>
 <section id="add-freetype-to-your-project">
 <h2>Add FreeType to your project<a class="headerlink" href="#add-freetype-to-your-project" title="Link to this heading"></a></h2>
 <p>First, Download FreeType from <a class="reference external" href="https://sourceforge.net/projects/freetype/files/">here</a>.</p>
+<p>If you haven't already done so, now is a good time to get familiar with setting up
+and configuring this library.  The above website is a good place to start, as is the
+<code class="docutils literal notranslate"><span class="pre">README</span></code> file in the top directory of the freetype project directory.</p>
 <p>There are two ways to use FreeType:</p>
 <section id="for-unix">
 <h3>For UNIX<a class="headerlink" href="#for-unix" title="Link to this heading"></a></h3>
-<p>For UNIX systems, it is recommended to use the way of compiling and installing libraries.</p>
+<p>For UNIX systems, the following is recommended to compile and install FreeType libraries.</p>
 <ul class="simple">
 <li><p>Enter the FreeType source code directory</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span></code></p></li>
@@ -4778,10 +4783,14 @@
 </section>
 <section id="for-embedded-devices">
 <h3>For Embedded Devices<a class="headerlink" href="#for-embedded-devices" title="Link to this heading"></a></h3>
-<p>For embedded devices, it is more recommended to use the FreeType
-configuration file provided by LVGL, which only includes the most
-commonly used functions, which is very meaningful for saving limited
-FLASH space.</p>
+<p>For embedded devices, it is recommended to use the FreeType
+configuration files provided by LVGL:</p>
+<ul class="simple">
+<li><p>lvgl/src/libs/freetype/ftmodule.h</p></li>
+<li><p>lvgl/src/libs/freetype/ftoption.h</p></li>
+</ul>
+<p>which only include the most commonly used modules and options, which is important to
+save limited FLASH space.</p>
 <ul class="simple">
 <li><p>Copy the FreeType source code to your project directory.</p></li>
 <li><p>Refer to the following <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for configuration:</p></li>
@@ -4820,17 +4829,19 @@ FLASH space.</p>
 <p>By default, the FreeType extension doesn't use LVGL's file system. You
 can simply pass the path to the font as usual on your operating system
 or platform.</p>
-<p>If you want FreeType to use lvgl's memory allocation and file system
+<p>If you want FreeType to use LVGL's memory allocation and file system
 interface, you can enable <code class="xref c c-macro docutils literal notranslate"><span class="pre">LV_FREETYPE_USE_LVGL_PORT</span></code> in
-<code class="docutils literal notranslate"><span class="pre">lv_conf.h</span></code>, convenient for unified management.</p>
+<code class="docutils literal notranslate"><span class="pre">lv_conf.h</span></code>, convenient for unified management.  If you do this, you will need
+to exclude the configured FreeType library's <code class="docutils literal notranslate"><span class="pre">ftsystem.c</span></code> file from being compiled,
+since LVGL's <code class="docutils literal notranslate"><span class="pre">lv_ftsystem.c</span></code> has custom versions of the functions defined therein.</p>
 <p>The font style supports <em>Italic</em> and <strong>Bold</strong> fonts processed by
-software, and can be set with reference to the following values:</p>
+software, and can be set by using following values where style values are required:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv4N24lv_freetype_font_style_t29LV_FREETYPE_FONT_STYLE_NORMALE" title="LV_FREETYPE_FONT_STYLE_NORMAL"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">LV_FREETYPE_FONT_STYLE_NORMAL</span></code></a>: Default style.</p></li>
 <li><p><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv4N24lv_freetype_font_style_t29LV_FREETYPE_FONT_STYLE_ITALICE" title="LV_FREETYPE_FONT_STYLE_ITALIC"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">LV_FREETYPE_FONT_STYLE_ITALIC</span></code></a>: Italic style.</p></li>
 <li><p><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv4N24lv_freetype_font_style_t27LV_FREETYPE_FONT_STYLE_BOLDE" title="LV_FREETYPE_FONT_STYLE_BOLD"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">LV_FREETYPE_FONT_STYLE_BOLD</span></code></a>:  Bold style.</p></li>
 </ul>
-<p>They can be combined.eg:
+<p>These values can be combined, e.g.
 <span class="cpp-expr sig sig-inline cpp"><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv4N24lv_freetype_font_style_t27LV_FREETYPE_FONT_STYLE_BOLDE" title="LV_FREETYPE_FONT_STYLE_BOLD"><span class="n">LV_FREETYPE_FONT_STYLE_BOLD</span></a><span class="w"> </span><span class="o">|</span><span class="w"> </span><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#_CPPv4N24lv_freetype_font_style_t29LV_FREETYPE_FONT_STYLE_ITALICE" title="LV_FREETYPE_FONT_STYLE_ITALIC"><span class="n">LV_FREETYPE_FONT_STYLE_ITALIC</span></a></span>.</p>
 <p>The FreeType extension also supports colored bitmap glyphs such as emojis. Note
 that only bitmaps are supported at this time. Colored vector graphics cannot be
@@ -4841,9 +4852,8 @@ please refer to example code.</p>
 </section>
 <section id="examples">
 <span id="freetype-example"></span><h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
-</section>
 <section id="open-a-front-with-freetype">
-<h2>Open a front with FreeType<a class="headerlink" href="#open-a-front-with-freetype" title="Link to this heading"></a></h2>
+<h3>Open a front with FreeType<a class="headerlink" href="#open-a-front-with-freetype" title="Link to this heading"></a></h3>
 <div class='lv-example-container'><div class='lv-example' data-real-src='/9.3/_static/built_lv_examples/index.html?example=lv_example_freetype_1&w=320&h=240'></div><div class='lv-example-description'></div></div><div class="toggle docutils container">
 <div class="header docutils container">
 <p>C code &nbsp;</p><a class='lv-example-link-button' onclick="event.stopPropagation();" href='https://github.com/lvgl/lvgl/blob/master/examples/libs/freetype/lv_example_freetype_1.c'><i class="fa fa-github"></i>&nbsp;View on GitHub</a></div>
@@ -4904,7 +4914,7 @@ please refer to example code.</p>
 </div>
 <hr/></section>
 <section id="use-a-bitmap-font-to-draw-emojis-using-freetype">
-<h2>Use a bitmap font to draw Emojis using FreeType<a class="headerlink" href="#use-a-bitmap-font-to-draw-emojis-using-freetype" title="Link to this heading"></a></h2>
+<h3>Use a bitmap font to draw Emojis using FreeType<a class="headerlink" href="#use-a-bitmap-font-to-draw-emojis-using-freetype" title="Link to this heading"></a></h3>
 <div class='lv-example-container'><div class='lv-example' data-real-src='/9.3/_static/built_lv_examples/index.html?example=lv_example_freetype_2&w=320&h=240'></div><div class='lv-example-description'></div></div><div class="toggle docutils container">
 <div class="header docutils container">
 <p>C code &nbsp;</p><a class='lv-example-link-button' onclick="event.stopPropagation();" href='https://github.com/lvgl/lvgl/blob/master/examples/libs/freetype/lv_example_freetype_2.c'><i class="fa fa-github"></i>&nbsp;View on GitHub</a></div>
@@ -4974,8 +4984,9 @@ please refer to example code.</p>
 </div>
 </div>
 <hr/></section>
+</section>
 <section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading"></a></h2>
+<h2>Learn More<a class="headerlink" href="#learn-more" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>FreeType`tutorial &lt;<a class="reference external" href="https://www.freetype.org/freetype2/docs/tutorial/step1.html">https://www.freetype.org/freetype2/docs/tutorial/step1.html</a>&gt;`__</p></li>
 <li><p>LVGL's <a class="reference internal" href="../main-components/font.html#add-font"><span class="std std-ref">Adding a New Font</span></a></p></li>
@@ -4985,8 +4996,8 @@ please refer to example code.</p>
 <span id="freetype-api"></span><h2>API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
 <p><a class="reference internal" href="../../API/libs/freetype/ftoption.html#ftoption-h"><span class="std std-ref">ftoption.h</span></a></p>
 <p><a class="reference internal" href="../../API/libs/freetype/ftmodule.html#ftmodule-h"><span class="std std-ref">ftmodule.h</span></a></p>
-<p><a class="reference internal" href="../../API/misc/lv_types.html#lv-types-h"><span class="std std-ref">lv_types.h</span></a></p>
 <p><a class="reference internal" href="../../API/others/font_manager/lv_font_manager_utils.html#lv-font-manager-utils-h"><span class="std std-ref">lv_font_manager_utils.h</span></a></p>
+<p><a class="reference internal" href="../../API/misc/lv_types.html#lv-types-h"><span class="std std-ref">lv_types.h</span></a></p>
 <p><a class="reference internal" href="../../API/libs/freetype/lv_freetype.html#lv-freetype-h"><span class="std std-ref">lv_freetype.h</span></a></p>
 </section>
 </section>
@@ -5003,7 +5014,7 @@ please refer to example code.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, LVGL Kft.
-      <span class="lastupdated">Last updated on Jan 06, 2025.
+      <span class="lastupdated">Last updated on Jan 07, 2025.
       </span></p>
   </div>
 

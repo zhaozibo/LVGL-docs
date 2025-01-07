@@ -36,7 +36,7 @@ const load = async () => {
     const mermaids_to_add_zoom = 1 === -1 ? all_mermaids.length : 1;
     const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
     if(mermaids_to_add_zoom > 0) {
-        var svgs = d3.selectAll(".mermaid[data-zoom-id=id-3fe023a3-4313-4f66-a3ba-40384ebfdedc] svg");
+        var svgs = d3.selectAll(".mermaid[data-zoom-id=id-c68e3576-f21e-4336-8630-f215573b9fba] svg");
         if(all_mermaids.length !== mermaids_processed.length) {
             // try again in a sec, wait for mermaids to load
             setTimeout(load, 200);
@@ -2156,10 +2156,12 @@ window.addEventListener("load", load);
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#usage">Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#examples">Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#open-a-front-with-freetype">Open a front with FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#learn-more">Learn more</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../libs/freetype.html#open-a-front-with-freetype">Open a front with FreeType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libs/freetype.html#use-a-bitmap-font-to-draw-emojis-using-freetype">Use a bitmap font to draw Emojis using FreeType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#learn-more">Learn More</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../libs/freetype.html#api">API</a></li>
 </ul>
 </li>
@@ -4952,7 +4954,7 @@ to other driver FS functions when the cache is enabled. i.e., <code class="docut
 so the driver needs to implement more callbacks when the cache is enabled.</p>
 <section id="lv-fs-read-behavior-when-cache-is-enabled">
 <h3><code class="docutils literal notranslate"><span class="pre">lv_fs_read</span></code> <sub>(behavior when cache is enabled)</sub><a class="headerlink" href="#lv-fs-read-behavior-when-cache-is-enabled" title="Link to this heading"></a></h3>
-<pre data-zoom-id="id-3fe023a3-4313-4f66-a3ba-40384ebfdedc" class="mermaid">
+<pre data-zoom-id="id-c68e3576-f21e-4336-8630-f215573b9fba" class="mermaid">
         %%{init: {'theme':'neutral'}}%%
 flowchart LR
     A[&quot;call lv_fs_read and
@@ -5012,9 +5014,9 @@ to determine where the end of the file is.</p>
 </section>
 <section id="api">
 <span id="overview-file-system-api"></span><h2>API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../../API/misc/lv_fs.html#lv-fs-h"><span class="std std-ref">lv_fs.h</span></a></p>
 <p><a class="reference internal" href="../../API/libs/fsdrv/lv_fsdrv.html#lv-fsdrv-h"><span class="std std-ref">lv_fsdrv.h</span></a></p>
 <p><a class="reference internal" href="../../API/misc/lv_types.html#lv-types-h"><span class="std std-ref">lv_types.h</span></a></p>
-<p><a class="reference internal" href="../../API/misc/lv_fs.html#lv-fs-h"><span class="std std-ref">lv_fs.h</span></a></p>
 </section>
 </section>
 
@@ -5030,7 +5032,7 @@ to determine where the end of the file is.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, LVGL Kft.
-      <span class="lastupdated">Last updated on Jan 06, 2025.
+      <span class="lastupdated">Last updated on Jan 07, 2025.
       </span></p>
   </div>
 

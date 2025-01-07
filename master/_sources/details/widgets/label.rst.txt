@@ -232,9 +232,9 @@ API
 
 :ref:`lv_obj_property_names_h`
 
-:ref:`lv_observer_h`
-
 :ref:`lv_label_h`
 
 :ref:`lv_types_h`
+
+:ref:`lv_observer_h`
 

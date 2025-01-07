@@ -396,7 +396,7 @@ API
 
 :ref:`lv_api_map_v9_1_h`
 
-:ref:`lv_types_h`
-
 :ref:`lv_chart_h`
+
+:ref:`lv_types_h`
 

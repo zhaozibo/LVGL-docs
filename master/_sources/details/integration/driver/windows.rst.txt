@@ -121,7 +121,7 @@ Usage
 
 :ref:`lv_windows_context_h`
 
-:ref:`lv_windows_input_h`
-
 :ref:`lv_windows_display_h`
+
+:ref:`lv_windows_input_h`
 
